@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
-import { AppBar, Container, Toolbar } from '@mui/material';
+import { AppBar, Container, Toolbar, Button } from '@mui/material';
+import { auth } from '../firebase';
+import { AppContext } from '../providers/AppProvider';
 
 export const Header: React.FC = () => {
+  const { user } = useContext(AppContext);
 
   return (
     <AppBar className="!bg-red" position="static">
@@ -11,6 +14,9 @@ export const Header: React.FC = () => {
           <Link to="/">
             <div className="font-pacifico font-bold text-4xl">EDMON</div>
           </Link>
+          {user &&
+            <Button className="!text-white" onClick={() => auth.signOut()}>Logout</Button>
+          }
         </Toolbar>
       </Container>
     </AppBar>

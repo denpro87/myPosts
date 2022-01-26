@@ -23,17 +23,20 @@ export const Home: React.FC = () => {
       ref.onSnapshot(async (snapShot) => { 
         const tempChannels: IChannel[] = [];
         await snapShot.forEach(async (item) => {
-          const channel: IChannel = {
-            id: item.id,
-            name: item.data().name,
-          };
-          tempChannels.push(channel);
+          if (item.data().email.includes(domain)) {
+            const channel: IChannel = {
+              id: item.id,
+              name: item.data().name,
+              email: item.data().email,
+            };
+            tempChannels.push(channel);
+          }
         });
         setChannels(tempChannels);
       });
     }
     getChannels();
-  }, []);
+  }, [domain]);
 
   const handleClose = () => {
     setOpen(false);
