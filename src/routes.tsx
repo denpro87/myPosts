@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext } from 'react'
 import { Routes as Switch, Route, useLocation, Navigate } from 'react-router-dom';
-import { Home, Login } from './pages';
+import { Home, Login, Channel } from './pages';
 import { AppContext } from './providers/AppProvider';
 
 interface IProps {
@@ -18,7 +18,8 @@ const RequireAuth: React.FC<IProps> = ({children}) => {
 
 const Routes = () => (
     <Switch>
-      <Route path="/" element={<RequireAuth><Home /></RequireAuth>} />
+    <Route path="/" element={<RequireAuth><Home /></RequireAuth>} />
+    <Route path="/channels/:id" element={<RequireAuth><Channel /></RequireAuth>} />
       <Route path="/login" element={<Login />} />
     </Switch>
 )
