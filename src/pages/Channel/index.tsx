@@ -127,7 +127,6 @@ export const Channel: React.FC = () => {
             onChange={(e) => setNewPost((prev) => ({ ...prev, subject: e.target.value }))}
           />
           <TextField
-            autoFocus
             margin="dense"
             label="Body"
             fullWidth
